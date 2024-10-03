@@ -307,7 +307,8 @@ async function extractEventsFromPdfs() {
         }
     }
 
-    fs.writeFileSync('eventsData.json', JSON.stringify(finalData, null, 2));
+    // Data check
+    // fs.writeFileSync('eventsData.json', JSON.stringify(finalData, null, 2));
     return finalData;
 }
 

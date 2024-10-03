@@ -1,9 +1,9 @@
-import { HeroSection } from "@/sections/Hero";
+import { MapSection } from "@/sections/Map";
 
 export default function Home() {
   return (
     <div>
-      <HeroSection />
+      <MapSection />
     </div>
   );
 }

@@ -1,0 +1,362 @@
+[
+  {
+    "Region": "Africa",
+    "Events": [
+      {
+        "country": "Nigeria",
+        "description": "Urban protests against economic and food crisis saw unrest amid looting and security forces crackdown; jihadist, bandit and other armed group violence persisted.",
+        "severityScore": 45,
+        "mediaScore": 97
+      },
+      {
+        "country": "Sudan",
+        "description": "Fighting between Sudanese Army (SAF) and Rapid Support Forces (RSF) escalated in North Darfur, clashes subsided in east amid seasonal rains, and U.S.-led peace talks led to outcomes on aid deliveries amid deteriorating humanitarian crisis.",
+        "severityScore": 15,
+        "mediaScore": 59
+      },
+      {
+        "country": "Central African Republic",
+        "description": "Prospect of ceasefire created cracks among rebel alliance; deadly violence on civilians persisted and govt postponed local elections.",
+        "severityScore": 10,
+        "mediaScore": 100
+      },
+      {
+        "country": "Niger",
+        "description": "Relations with Benin warmed, while govt continued diplomatic realignment; jihadist insecurity persisted in south.",
+        "severityScore": 10,
+        "mediaScore": 93
+      },
+      {
+        "country": "Benin",
+        "description": "Diplomatic relations with Niger continued to warm; jihadist insecurity persisted, particularly in transboundary parks.",
+        "severityScore": 10,
+        "mediaScore": 81
+      },
+      {
+        "country": "Togo",
+        "description": "Jihadist violence continued to plague north; tensions with Benin flared over bloggers arrest.",
+        "severityScore": 10,
+        "mediaScore": 90
+      },
+      {
+        "country": "Cameroon",
+        "description": "Violence continued in Anglophone and Far North regions, while also flaring in previously calm North region; restrictions on critics continued ahead of 2025 election.",
+        "severityScore": 5,
+        "mediaScore": 87
+      },
+      {
+        "country": "Burundi",
+        "description": "Preparations for 2025 elections continued amid further efforts to sideline opposition; concerns rose over condition of Burundian refugees in Tanzania.",
+        "severityScore": 5,
+        "mediaScore": 61
+      },
+      {
+        "country": "Rwanda",
+        "description": "Regional diplomatic efforts to ease tensions with DR Congo (DRC) intensified amid continued war of words between Kigali and Kinshasa.",
+        "severityScore": 5,
+        "mediaScore": 95
+      },
+      {
+        "country": "Uganda",
+        "description": "Govt faced discontent over corruption and parliamentary expenditures, as authorities supressed protests; feud emerged among President Musevenis family.",
+        "severityScore": 5,
+        "mediaScore": 77
+      },
+      {
+        "country": "Kenya",
+        "description": "Protests subsided amid govt restrictions, anti-Al-Shabaab operations continued, and international police mission to Haiti remained challenging.",
+        "severityScore": 5,
+        "mediaScore": 93
+      },
+      {
+        "country": "Mozambique",
+        "description": "Govt and Rwandan forces continued offensive against Islamic State militants in northern Cabo Delgado province; court barred opposition coalition from October elections.",
+        "severityScore": 5,
+        "mediaScore": 89
+      },
+      {
+        "country": "Ethiopia",
+        "description": "Leadership of Tigray Peoples Liberation Front (TPLF) fractured, violence in Amhara and Oromia regions remained rampant, and relations with Mogadishu and Cairo grew more strained.",
+        "severityScore": 5,
+        "mediaScore": 62
+      },
+      {
+        "country": "South Sudan",
+        "description": "Nairobi talks remained frozen after VP Machars party withdrew from initiative, 2018 peace deal signatories held talks about December elections, and border conflict with Uganda simmered.",
+        "severityScore": 5,
+        "mediaScore": 69
+      },
+      {
+        "country": "Burkina Faso",
+        "description": "Large-scale violence continued while President Capt.",
+        "severityScore": 5,
+        "mediaScore": 100
+      },
+      {
+        "country": "Mali",
+        "description": "Amid persistent violence, impact of deadly July attack in north continued as govt severed relations with Ukraine; political climate remained tense.",
+        "severityScore": 5,
+        "mediaScore": 100
+      },
+      {
+        "country": "Guinea",
+        "description": "Debates over transition to civilian rule continued after draft constitution unveiled; civil society leaders remained missing.",
+        "severityScore": 5,
+        "mediaScore": 100
+      },
+      {
+        "country": "Chad",
+        "description": "Govt tightened its authoritarian grip as debate over constituencies and parliament continued; local elections called for December.",
+        "severityScore": 0,
+        "mediaScore": 100
+      },
+      {
+        "country": "South Africa",
+        "description": "Deputy leader of EFF opposition party defected to MKP party; gunmen targeted and killed local politicians.",
+        "severityScore": 0,
+        "mediaScore": 55
+      },
+      {
+        "country": "Zimbabwe",
+        "description": "Worsening human rights situation and widespread repression overshadowed annual regional SADC summit in capital Harare, drawing international criticism.",
+        "severityScore": 0,
+        "mediaScore": 91
+      },
+      {
+        "country": "Eritrea",
+        "description": "Asmara strengthened relations with Cairo and Moscow; authorities reportedly arrested 31 Yemeni fishermen over disputed Hanish islands issue.",
+        "severityScore": 0,
+        "mediaScore": 53
+      },
+      {
+        "country": "Somalia",
+        "description": "Al-Shabaab launched major attack in capital Mogadishu as post-AU mission security framework became clearer; Trkiyes mediation between Somalia and Ethiopia progressed slowly.",
+        "severityScore": 0,
+        "mediaScore": 20
+      },
+      {
+        "country": "Somaliland",
+        "description": "New opposition alliance emerged ahead of November elections; govt defended agreement with Ethiopia.",
+        "severityScore": 0,
+        "mediaScore": 100
+      }
+    ]
+  },
+  {
+    "Region": "Asia",
+    "Events": [
+      {
+        "country": "Myanmar",
+        "description": "Ethnic armed group captured militarys north east command, military chief faced major criticism for loss, and Arakan Army (AA) pursued attacks on regime forces in Northern Rakhine, which could fuel more civilian violence in coming weeks.",
+        "severityScore": 20,
+        "mediaScore": 82
+      },
+      {
+        "country": "Pakistan",
+        "description": "Former PM Imran Khan unsuccessfully attempted to mend relations with military as bilateral tensions with Kabul remained high amid persistent militant attacks.",
+        "severityScore": 10,
+        "mediaScore": 100
+      },
+      {
+        "country": "Thailand",
+        "description": "Court disbanded Move Forward Party (MFP) as new PM Paetongtarn Shinawatra, daughter of former PM Thaksin Shinawatra, took office amid ongoing violence in deep south.",
+        "severityScore": 10,
+        "mediaScore": 57
+      },
+      {
+        "country": "Afghanistan",
+        "description": "Taliban strengthened regional ties, including with Uzbekistan, and banned UN special rapporteur on human rights from country; jihadist group IS-KP claimed deadly attack.",
+        "severityScore": 5,
+        "mediaScore": 78
+      },
+      {
+        "country": "India",
+        "description": "Leaked audio recording surfaced alleging that Chief Minister played role in fuelling ethnic tensions in Manipur, tensions with China over border issues persisted, and Maoist violence decreased.",
+        "severityScore": 5,
+        "mediaScore": 95
+      },
+      {
+        "country": "Sri Lanka",
+        "description": "Sri Lanka prepared for Sept presidential elections, greenlighting 39 candidates; IMF warned country at critical juncture, should sustain economic reform.",
+        "severityScore": 5,
+        "mediaScore": 93
+      },
+      {
+        "country": "Philippines",
+        "description": "Bangsamoro peace process stayed on track despite occasional violence; govt forces continued to conduct anti-communist operations.",
+        "severityScore": 5,
+        "mediaScore": 100
+      },
+      {
+        "country": "Indonesia",
+        "description": "Authorities blamed Papuan separatists for killing New Zealand pilot in Papua; authorities signed major defence deal with Australia.",
+        "severityScore": 0,
+        "mediaScore": 96
+      }
+    ]
+  },
+  {
+    "Region": "Europe and Central Asia",
+    "Events": [
+      {
+        "country": "Belarus",
+        "description": "Minsk bolstered troop presence along border with Ukraine amid stepped-up tensions; West imposed more sanctions in response to crackdown.",
+        "severityScore": 10,
+        "mediaScore": 95
+      },
+      {
+        "country": "Ukraine",
+        "description": "Russian forces closed in on strategic town of Pokrovsk in Donetsk region, which looks set to become next epicentre of conflict in east; Kyivs forces launched surprise attack into Russias Kursk region.",
+        "severityScore": 5,
+        "mediaScore": 96
+      },
+      {
+        "country": "Cyprus",
+        "description": "Amid controversy over invitation to UN-mediated talks, Republic of Cyprus (RoC) faced criticism for alleged role in Gaza war and Turkish Republic of Northern Cyprus (TRNC) party leaders clashed.",
+        "severityScore": 5,
+        "mediaScore": 62
+      },
+      {
+        "country": "Kosovo",
+        "description": "Govt efforts to fully integrate Serb-majority north continued, while President Osmani announced parliamentary elections would take place in February 2025.",
+        "severityScore": 0,
+        "mediaScore": 92
+      },
+      {
+        "country": "Armenia",
+        "description": "Yerevan and Baku overcame major stumbling block in peace talks, while frontlines remained relatively calm despite occasional incidents.",
+        "severityScore": 0,
+        "mediaScore": 80
+      },
+      {
+        "country": "Azerbaijan",
+        "description": "Baku and Yerevan overcame major stumbling block in peace talks, frontlines remained relatively calm despite occasional incidents, and relations with Iran remained fragile.",
+        "severityScore": 0,
+        "mediaScore": 77
+      },
+      {
+        "country": "Georgia",
+        "description": "Political parties intensified their election campaigns amid deepening polarisation, and breakaway Abkhazia region appointed veteran diplomat to serve as de facto foreign minister.",
+        "severityScore": 0,
+        "mediaScore": 93
+      },
+      {
+        "country": "Kyrgyzstan",
+        "description": "Sixth consultative meeting of Central Asian leaders underscored deepening regional cooperation.",
+        "severityScore": 0,
+        "mediaScore": 100
+      },
+      {
+        "country": "Tajikistan",
+        "description": "Sixth consultative meeting of Central Asian leaders underscored deepening regional cooperation; stifling of media persisted.",
+        "severityScore": 0,
+        "mediaScore": 100
+      },
+      {
+        "country": "Uzbekistan",
+        "description": "Sixth consultative meeting of Central Asian leaders underscored deepening regional cooperation, while PM Aripov visited Afghanistan .",
+        "severityScore": 0,
+        "mediaScore": 60
+      }
+    ]
+  },
+  {
+    "Region": "Latin America and the Caribbean",
+    "Events": [
+      {
+        "country": "Ecuador",
+        "description": "Violence persisted in strategic drug trafficking enclaves of Ecuador, while relations with Mexico remained strained.",
+        "severityScore": 5,
+        "mediaScore": 100
+      },
+      {
+        "country": "Mexico",
+        "description": "Claudia Sheinbaum prepared to assume presidency in October as authorities pressed ahead with judicial reform, criminal violence persisted, and relations with U.S.",
+        "severityScore": 5,
+        "mediaScore": 84
+      },
+      {
+        "country": "Colombia",
+        "description": "Govt announced plans to open talks with two armed criminal groups, including Gaitanista Army (EGC), while ceasefire with ELN expired; clashes between rival EMC factions intensified.",
+        "severityScore": 0,
+        "mediaScore": 29
+      },
+      {
+        "country": "El Salvador",
+        "description": "Authorities renewed state of exception, while concerns grew over judicial independence.",
+        "severityScore": 0,
+        "mediaScore": 100
+      },
+      {
+        "country": "Haiti",
+        "description": "Insecurity persisted despite deployment of police officers from Kenya-led security mission, which remained hamstrung by funding and equipment shortfalls; efforts to form electoral council stalled.",
+        "severityScore": 0,
+        "mediaScore": 97
+      }
+    ]
+  },
+  {
+    "Region": "Middle East and North Africa",
+    "Events": [
+      {
+        "country": "Yemen",
+        "description": "Houthis continued attacks on international shipping, ap- pointed new govt and intensified crackdown on aid workers; tensions in Presidential Leadership Council (PLC) fuelled tensions in south.",
+        "severityScore": 15,
+        "mediaScore": 86
+      },
+      {
+        "country": "Syria",
+        "description": "Iran-backed groups targeted U.S.",
+        "severityScore": 0,
+        "mediaScore": 100
+      },
+      {
+        "country": "Iran",
+        "description": "Regional tensions soared after killing of senior Hamas official in capital Tehran while Gaza ceasefire talks intensified; parliament ap- proved president Pezeshkians unity cabinet.",
+        "severityScore": 0,
+        "mediaScore": 0
+      },
+      {
+        "country": "Iraq",
+        "description": "Iran-backed militia rockets injured U.S.",
+        "severityScore": 0,
+        "mediaScore": 100
+      },
+      {
+        "country": "Saudi Arabia",
+        "description": "Authorities condemned Israel for assassination of Hamas leader Ismail Haniyeh and conducted diplomacy with Iran to pre- vent wider Middle East escalation.",
+        "severityScore": 0,
+        "mediaScore": 0
+      },
+      {
+        "country": "Algeria",
+        "description": "Domestic tensions rose ahead of 7 Sept presidential elec- tions; govt faced rocky relations with several international actors.",
+        "severityScore": 0,
+        "mediaScore": 0
+      },
+      {
+        "country": "Egypt",
+        "description": "Judicial reforms proposed amid economic challenges as Cairo continued to advocate for resolution to crises in Gaza, Red Sea and Sudan.",
+        "severityScore": 0,
+        "mediaScore": 0
+      },
+      {
+        "country": "Western Sahara",
+        "description": "Sahrawi authorities criticised French support for Moroccan autonomy plan; more countries moved to open diplomatic of- fices in Moroccan-controlled territory.",
+        "severityScore": 0,
+        "mediaScore": 0
+      }
+    ]
+  },
+  {
+    "Region": "North America",
+    "Events": [
+      {
+        "country": "United States",
+        "description": "(Internal) Democratic National Committee nominated VP Kamala Harris as its presidential candidate.",
+        "severityScore": 0,
+        "mediaScore": 100
+      }
+    ]
+  }
+]
