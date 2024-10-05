@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FaGithub, FaLink, FaArrowDown } from 'react-icons/fa'
 import Footer from './Footer';
+import axios from 'axios';
 
 interface DrawerProps {
     isOpen: boolean;
@@ -8,6 +9,27 @@ interface DrawerProps {
 }
 
 const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
+
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [fade, setFade] = useState<boolean>(false);
+
+    const handleRefreshData = async () => {
+        try {
+            const response = await axios.post('http://localhost:3001/api/refresh');
+            console.log(response.data.message); // Optional: log success message
+            setErrorMessage(null); // Clear any existing error message
+        } catch (error) {
+            console.error("Error refreshing data:", error);
+            setErrorMessage("Data already up to date"); // Set error message
+            setFade(true)
+
+            setTimeout(() => {
+                setFade(false)
+                setTimeout(() => setErrorMessage(null), 500);
+            }, 3000);
+        }
+    };
+
     return (
         <>
             <div className={`fixed inset-0 z-[1001] bg-gray-800 transition-transform transform ${isOpen ? 'translate-y-0' : 'translate-y-full'} shadow-lg flex flex-col `}>
@@ -66,7 +88,10 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
                         {/* Normalized Score Difference */}
                         <h3 className="text-lg md:text-2xl font-semibold text-white mt-6">Normalized Score Difference</h3>
                         <p className="text-sm md:text-base text-gray-300 mt-2">
-                            You can calculate the normalized difference between the severity score and media score for each event. This metric shows how closely aligned the two scores are for each event.
+                            You can calculate the normalized difference between the severity score and media score for each event. 
+                        </p>
+                        <p className="text-sm md:text-base text-gray-300">
+                            This metric shows how closely aligned the two scores are for each event and can allow users to quickly assess the relative importance of events.
                         </p>
                         <p className="text-sm md:text-base text-gray-300 mt-2">
                             <strong>Formula:</strong>
@@ -83,37 +108,74 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
                             <li><strong>Negative Values:</strong> The media score is higher than the severity score.</li>
                         </ul>
 
+                        {/* Adjusted Color Scheme */}
+                        <p className="text-sm md:text-base text-gray-300 mt-3">
+                            <strong>Visual Representation:</strong>
+                        </p>
+
+                        <ul className="list-disc list-inside text-sm md:text-base text-gray-300 mt-3">
+                            <li><span className="font-semibold text-red-600"><i>Deep Red</i></span>: The event in that country is <strong>underrepresented</strong> in the media (severity is much higher than media attention).</li>
+                            <li><span className="font-semibold text-red-400"><i>Light Red/Pink</i></span>: Indicates <strong>slight underreporting</strong> by the media.</li>
+                            <li><span className="font-semibold text-blue-600"><i>Deep Blue</i></span>: The event is <strong>overrepresented</strong> in the media (media attention is much higher than severity).</li>
+                            <li><span className="font-semibold text-blue-400"><i>Light Blue</i></span>: Indicates <strong>slight overreporting</strong> by the media.</li>
+                            <li><span className="font-semibold text-gray-400"><i>Gray/Transparent Fill</i></span>: For countries with <strong>no data</strong> or where media and severity scores are <strong>well-aligned</strong>.</li>
+                        </ul>
+                        <p className="text-sm md:text-base text-gray-300 mt-3">
+                            This adjusted color scheme emphasizes where the media may be underrepresenting or overrepresenting an event&apos;s severity:
+                        </p>
+
                         {/* Correlation */}
                         <h3 className="text-lg md:text-2xl font-semibold text-white mt-6">Correlation</h3>
-                        
                         <p className="text-sm md:text-base text-gray-300 mt-2">
-                            The correlation value indicates the relationship between media attention and event severity scores for each region. 
+                            The correlation value indicates the relationship between media attention and event severity scores for each region.
+                        </p>
+                        <p className="text-sm md:text-base text-gray-300 mt-2">
+                            The <strong>Pearson correlation coefficient</strong> is used to measure this relationship. Pearson correlation calculates the linear relationship between two variables, in this case, media attention and severity. The result is a value between -1 and 1.
                         </p>
                         <ul className="list-disc list-inside text-sm md:text-base text-gray-300 mt-3">
                             <li><strong>0:</strong> Indicates no clear pattern between media attention and severity.</li>
-                            <li><strong>Positive Values:</strong> Countries experiencing more severe events are also receiving more media attention.</li>
-                            <li><strong>Negative Values:</strong> Countries with severe events are receiving less media attention, indicating a potential oversight in media coverage.</li>
+                            <li><strong>Positive Values:</strong> A positive correlation means that countries experiencing more severe events are also receiving more media attention. </li>
+                            <li><strong>Negative Values:</strong> A negative correlation means that countries with more severe events are receiving less media attention, potentially indicating an oversight in media coverage. </li>
                         </ul>
+                        <p className="text-sm md:text-base text-gray-300 mt-3">
+                            In essence, the Pearson correlation helps us understand whether the severity of an event is appropriately reflected in the media&apos;s coverage of that event. 
+                        </p>
+                        <p className="text-sm md:text-base text-gray-300">
+                            A positive correlation would show a strong alignment between media attention and the seriousness of the situation, while a negative correlation might suggest a misalignment or bias in the media&apos;s focus.
+                        </p>
 
                         {/* Color Intensity */}
                         <h3 className="text-lg md:text-2xl font-semibold text-white mt-6">Color Intensity</h3>
                         <p className="text-sm md:text-base text-gray-300 mt-2">
-                            Events are visually represented on the map using varying shades of <i>red</i>, <i>blue</i>, and <i>purple</i>, corresponding to the <i>Severity Score</i>, <i>Media Score</i>, and <i>Normalized Difference</i>, respectively:
+                            Events are visually represented on the map using varying shades of <i>red</i> and <i>blue</i>, corresponding to the <i>Severity Score</i> and <i>Media Score</i> respectively:
                         </p>
                         <ul className="list-disc list-inside text-sm md:text-base text-gray-300 mt-3">
-                            <li><span className="text-red-500"><i>Red</i></span>: Represents the Severity Score. The deeper the red, the more severe the event.</li>
-                            <li><span className="text-blue-500"><i>Blue</i></span>: Represents the Media Score. The deeper the blue, the more media attention the event is receiving.</li>
-                            <li><span className="text-purple-500"><i>Purple</i></span>: Represents the Normalized Difference. A stronger purple color indicates a greater disparity between media attention and severity.</li>
+                            <li><span className=" font-semibold text-red-500"><i>Red</i></span>: Represents the Severity Score. The deeper the red, the more severe the event.</li>
+                            <li><span className="font-semibold text-blue-500"><i>Blue</i></span>: Represents the Media Score. The deeper the blue, the more media attention the event is receiving.</li>
                         </ul>
                         <p className="text-sm md:text-base text-gray-300 mt-3">
-                            For events with a <i>high severity</i> score, you'll notice a strong, deep red color, indicating significant violence, crisis, or unrest.
+                            For events with a <i>high severity</i> score, you&apos;ll notice a strong, deep red color, indicating significant violence, crisis, or unrest.
                         </p>
                         <p className="text-sm md:text-base text-gray-300 mt-3">
                             Events with <i>high media attention</i> will have a deep blue color, showcasing that the event is heavily covered by global media.
                         </p>
-                        <p className="text-sm md:text-base text-gray-300 mt-3">
-                            The <i>Normalized Difference</i> is calculated to identify the disparity between the media attention score and the severity score, allowing users to quickly assess the relative importance of events.
-                        </p>
+                        {/* Refresh Data Button */}
+                        <div className="mt-4">
+                            <button
+                                onClick={handleRefreshData}
+                                className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-500"
+                            >
+                                Update Data
+                            </button>
+                        </div>
+                        {/* Error Message Popup */}
+                        {errorMessage && (
+                            <div
+                            className={`fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-600/80 text-white font-semibold tracking-wider p-4 rounded-lg shadow-lg ${fade ? 'fade-in' : 'fade-out'}`}
+                            >
+                                {errorMessage}
+                            </div>
+                        )}
                     </div>
                 </div>
                 <Footer />

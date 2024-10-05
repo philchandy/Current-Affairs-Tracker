@@ -213,8 +213,8 @@
         "description": "Court disbanded Move Forward Party (MFP) as new PM Paetongtarn Shinawatra, daughter of former PM Thaksin Shinawatra, took office amid ongoing violence in deep south.",
         "detailedDescription": "Constitutional court dissolved MFP as over 140 MPs joined new opposition party. Constitutional Court 7 Aug dissolved main opposition MFP in unanimous decision; court banned MFPs eleven party executives, including party leader Pita Limjaroenrat, from holding office for ten years. Human rights groups and UN Human Rights Chief Volker Turk immediately criticised ruling. Meanwhile, all 143 MFP MPs, who retained seats in parliament, 9 Aug joined freshly formed Peoples Party or Prachachon, with tech entrepreneur Natthaphong Ruengpanyawut as party leader. Sec-Gen of National Anti-Corruption Commission Office 8 Aug said agency had ordered investigation of 44 former MFP MPs, including Natthaphong, for alleged breach of ethical standards by sponsoring bill to amend Article 112 of the Criminal Code. New PM Paetongtarn Shinawatra elected unopposed. Constitutional Court 14 Aug dismissed PM Srettha Thavisin for ethical violations. House of Representatives 16 Aug elected Paetongtarn Shinawatra as new PM; Paetongtarn is widely seen as proxy for her father, former PM Thaksin Shinawatra. Royal Gazette 17 Aug reported decree that pardoned Thaksin for his 2008 conviction. Deep south peace talks continued as militants staged attacks. Former PM Srettha 3 Aug met Malaysian PM Anwar Ibrahim in Sungai Kolok, Narathiwat province, on Malaysian border, reportedly discussed Deputy PM and Minister of Interior Anutin Charnvirakuls role working with Malaysias security sector to end conflict. Narathiwat Provincial Court 23 Aug accepted case brought by families of victims of Oct 2004 Tak Bai incident, in which 85 Malay-Muslim men were killed. Meanwhile, low-level violence continued in deep south. Notably, security forces 1 Aug clashed with insurgents, killing three, in Khok Pho district, Pattani province; rangers on patrol 4 Aug detonated landmine killing one in Raman district, Yala province; security forces 8 Aug engaged in firefight with militant in Chanae district, Narathiwat, which left one militant dead; militants 9 Aug detonated three IEDs near Pattani Provincial Police Investigation Division, injuring nine police officers. Four assailants 11 Aug threw pipe bombs at Marine Corps checkpoint in Bacho district, Narathiwat, injuring one marine. Pacific",
         "severityScore": 60,
-        "mediaScore": 58,
-        "normalizedDifference": 0.03333333333333333
+        "mediaScore": 59,
+        "normalizedDifference": 0.016666666666666666
       },
       {
         "country": "Myanmar",
@@ -273,7 +273,7 @@
         "normalizedDifference": -0.9
       }
     ],
-    "Correlation": -0.5895507046662822
+    "Correlation": -0.5937532089184905
   },
   {
     "Region": "Europe and Central Asia",
@@ -307,8 +307,8 @@
         "description": "Amid controversy over invitation to UN-mediated talks, Republic of Cyprus (RoC) faced criticism for alleged role in Gaza war and Turkish Republic of Northern Cyprus (TRNC) party leaders clashed.",
         "detailedDescription": "Confusion over invitation to UN-mediated talks sparked controversy. RoC President Christodoulides 3 Aug said he had accepted UN invitation to tripartite meeting on 13 Aug with TRNC leader Ersin Tatar. Tatar next day denied invitation, saying he would not have accepted it even if it was sent. RoC 5 Aug clarified govt had only been sounded out for possible meeting date. RoC accused of involvement in Gaza war. In response to RoC opposition Progressive Party of Working People (AKEL)s criticism of U.S. warship arriving in Limassol port, RoC 9 Aug said Cyprus is not involved in military operations or any conflict. Tatar 12 Aug accused RoC of becoming military stopover, being complicit in crimes against humanity in Gaza, making Cyprus into a target. TRNC party leaders clashed over approach to Cyprus problem. TRNC opposition party leader Tufan Erhrman 8 Aug criticised Tatars avoidance of diplomacy and dialogue. Tatar next day said, diplomacy has not stopped and accused Erhrman of adopting positions close to RoCs. In an important international development. Turkish FM Hakan Fidan 31 Aug attended informal EU Foreign Affairs Council meeting, first invitation to Turkish FM in five years, signalling positive turn in Trkiye-EU relations. Among other issues, long-stalled visa liberalisation and Customs Union upgrade processes were discussed; divergence persisted, however, over EUs linkage of Cyprus issue to Trkiye-EU relations. Notably, Fidan stated While we are committed to advancing our relations with the EU, it is not constructive to tie every aspect of our dialogue to the Cyprus issue.",
         "severityScore": 30,
-        "mediaScore": 62,
-        "normalizedDifference": -0.5161290322580645
+        "mediaScore": 63,
+        "normalizedDifference": -0.5238095238095238
       },
       {
         "country": "Armenia",
@@ -323,8 +323,8 @@
         "description": "Russian forces closed in on strategic town of Pokrovsk in Donetsk region, which looks set to become next epicentre of conflict in east; Kyivs forces launched surprise attack into Russias Kursk region.",
         "detailedDescription": "Russians closed in on Pokrovsk, key logistical hub in eastern Donetsk. Russian forces quickened their advance toward Donetsks Pokrovsk town, whose strategic location at intersection of several roads and railways facilitates provision of supplies to Ukrainian troops along eastern frontline. Authorities 15 Aug ordered civilians to evacuate as Russians closed in, making rapid gains late Aug in several areas south east of Pokrovsk and fuelling fears of grinding battle for control of town in coming weeks and months. Russian forces also continued their relentless advance near Toretsk and Chasiv Yar towns. Meanwhile, strikes on Ukrainian cities persisted, with President Zelenskyy 26 Aug calling early-morning Russian missile and drone attack one of the biggest combined strikes since full-scale invasion. Ukraine launched surprise incursion into Russian borderlands. Ukraine 6 Aug launched incursion into Russias Kursk region (see Russia), capturing swath of territory in attempt to strengthen Kyivs hand in future talks and divert Russian troops from Donetsk; top commander Gen. Syrskyi 27 Aug said Moscow had anticipated this and instead bolstered troops in Pokrovsk direction. In response to incursion, Russian President Putin 12 Aug ruled out talks with Kyiv; media outlet The Washington Post 17 Aug reported sides were planning talks in Qatar on mutual cessation of strikes on energy infrastructure. Zelenskyy 27 Aug said offensive was part of victory plan to end war. Kyiv sought support among African nations, engaged with Indian PM Modi. FM Kuleba 4-8 Aug visited Malawi, Zambia and Mauritius in effort to bolster support for Ukraine among African countries. Yet Mali 4 Aug cut ties with Ukraine over its alleged support for Tuareg-led deadly assault on Russian paramilitaries and Malian soldiers in July (see Mali); Niger 6 Aug followed suit. Meanwhile, Indian PM Modi 23 Aug held talks with Zelenskyy in capital Kyiv, called on warring parties to move toward diplomacy and said India is ready to play an active role in peace efforts. Western Europe/Mediterranean",
         "severityScore": 15,
-        "mediaScore": 96,
-        "normalizedDifference": -0.84375
+        "mediaScore": 95,
+        "normalizedDifference": -0.8421052631578947
       },
       {
         "country": "Kosovo",
@@ -367,7 +367,7 @@
         "normalizedDifference": -1
       }
     ],
-    "Correlation": -0.10911060503929482
+    "Correlation": -0.10578067449629004
   },
   {
     "Region": "Latin America and the Caribbean",
@@ -439,8 +439,8 @@
         "description": "Iran-backed groups targeted U.S. base and clashed with SDF in east, armed groups fought in north and Israel launched several at- tacks.",
         "detailedDescription": "In east, Iran-backed militias and U.S. traded deadly attacks; Iran-backed militias clashed with SDF. Iran-backed groups 9 Aug launched drone attack at Kharab al-Jir base, Hasakah province, injured eight U.S. troops. Suspected U.S. drone 11 Aug killed eight Iran-backed militiamen near Iraqi border. Also in east, govt- and Iran-backed Arab tribal militias 6-7 Aug launched large-scale attack on Syrian Democratic Forces (SDF) positions in Deir ez-Zor province, killing at least three civilians. In response, SDF 7 Aug besieged govt-held areas in Hasakah and Qamishli towns, Hasakah prov- ince. Clashes between SDF and Arab tribal militias 7-12 Aug killed 38, including 19 civilians; notably, govt- and Iran-backed groups 9 Aug reportedly killed 12 civilians in Dahla village, Deir ez-Zor; SDF 12 Aug reportedly killed 17 Arab tribal militiamen. SDF 14 Aug lifted sieges but clashes next day resumed. In north, armed groups clashed. Clashes between SDF-aligned Afrin Liberation Forces, Trkiye-backed Syrian National Army (SNA) and Hayat Tahrir al-Sham (HTS) intensified. Notably, SNA-Afrin Liberation Forces clashes 11 Aug reportedly killed SNA member near Marea town, Aleppo province. In Idlib province, SNA-HTS clashes 12 Aug killed five. Afrin Liberation Forces 18 Aug reportedly killed HTS member near Afrin town, Aleppo. Clashes with SDFs Manbij Military Council 21 Aug killed two SNA militants in Manbij area, Aleppo. Meanwhile, bomb 9 Aug killed at least nine in Azaz city, Aleppo province. U.S. strike 23 Aug killed senior leader of Al- Qaeda-linked Horas al-Din group in Jabal al-Zawiya area, Idlib province. Israel reportedly launched several attacks. Alleged Israeli drone 3 Aug reportedly killed one on Damascus-Beirut road. Suspected Israeli airstrike 8 Aug targeted mis- sile warehouse near al-Shayrat airport, Homs province, injuring Iranian Islamic Rev- olutionary Guard Corps advisor who later died from wounds. Alleged Israeli airstrike 23 Aug killed three Iran-backed militants and injured ten in Homs and Hama prov- inces. Suspected Israeli drone strike 28 Aug killed three Palestinian fighters and one Hizbollah member on Damascus-Beirut highway. In other important developments. ISIS 17 Aug killed three govt forces near al-Habil oil field, Homs. Alleged Turkish drone 29 Aug killed one in Hasakahs Amuda town. Gulf and Arabian Peninsula",
         "severityScore": 45,
-        "mediaScore": 97,
-        "normalizedDifference": -0.5360824742268041
+        "mediaScore": 98,
+        "normalizedDifference": -0.5408163265306123
       },
       {
         "country": "Iran",
@@ -483,7 +483,7 @@
         "normalizedDifference": -0.8888888888888888
       }
     ],
-    "Correlation": -0.25059477066392083
+    "Correlation": -0.24343663707916632
   },
   {
     "Region": "North America",

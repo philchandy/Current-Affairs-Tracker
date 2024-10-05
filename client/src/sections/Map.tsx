@@ -48,6 +48,7 @@ export const MapSection = () => {
     const [isEventCardOpen, setIsEventCardOpen ] = useState<boolean>(false);
     const [regionCorrelation, setRegionCorrelation] = useState<{ [key: string]: number | null }>({});
     const [showCorrelations, setShowCorrelations] = useState(false);
+    
 
     
     
@@ -140,8 +141,8 @@ export const MapSection = () => {
 
     const getColorForNormalizedDifference = (normalizedDifference: number) => {
         const ratio = normalizedDifference; //assuming normalizedDifference is between -1 and 1
-        const redValue = Math.floor(255 * (ratio < 0 ? -ratio : 0));
-        const blueValue = Math.floor(255 * (ratio > 0 ? ratio : 0));
+        const redValue = Math.floor(255 * (ratio > 0 ? ratio : 0));
+        const blueValue = Math.floor(255 * (ratio < 0 ? -ratio : 0));
         return `rgb(${redValue}, 0, ${blueValue})`;
     };
 

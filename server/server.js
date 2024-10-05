@@ -1,43 +1,50 @@
 const express = require('express');
 const cors = require('cors');
-const extractEventsFromPdfs = require('./scrape')
-const rankEvents = require('./severityScore')
-const rankEventsByMediaAttention = require('./mediaScore')
 const fs = require('fs');
+const {
+    initializeData,
+    refreshData,
+    movePdfsFromTemp,
+} = require('./dataHandler');
+const path = require('path');
 
 const app = express();
 const PORT = 3001;
 
 app.use(cors());
 
-const outputFilePath = 'eventsDataRanked.json'
+const isTempFolderEmpty = (tempDir) => {
+    return fs.existsSync(tempDir) && fs.readdirSync(tempDir).length === 0;
+};
 
-const initializeData = async () => {
-    try {
-        const data = await extractEventsFromPdfs(); // Extract events from PDFs
-        const rankedSeverity = rankEvents(data); // Rank events by severity
-        const rankedEvents = await rankEventsByMediaAttention(rankedSeverity); // Rank events by media attention
-        fs.writeFileSync(outputFilePath, JSON.stringify(rankedEvents, null, 2)); // Write to JSON file
-        console.log("Data initialized and saved to eventsDataRanked.json");
-    } catch (error) {
-        console.error("Error initializing data:", error);
+// Route to trigger data refresh
+app.post('/api/refresh', async (req, res) => {
+    const tempDir = path.join(__dirname, 'tempPDFs');
+
+    if (isTempFolderEmpty(tempDir)) {
+        return res.status(400).json({ message: "tempPDFs folder is empty. Please add PDFs before refreshing data." });
     }
-}
 
-initializeData();
+    movePdfsFromTemp();
+    await refreshData();
+    res.status(200).json({ message: "Data refreshed successfully." });
+});
 
-app.get('/api/scrape', async (req,res) => {
+// Route to get scraped and ranked event data
+app.get('/api/scrape', async (req, res) => {
+    const outputFilePath = 'eventsDataRanked.json';
     if (fs.existsSync(outputFilePath)) {
         const existingData = fs.readFileSync(outputFilePath, 'utf-8');
         const parsedData = JSON.parse(existingData);
-
-        // Return the existing ranked events data
         return res.json(parsedData);
     } else {
         return res.status(404).json({ error: "Data not found." });
     }
 });
 
+//initialize data when the server starts
+initializeData();
+
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`)
-})
+    console.log(`Server is running on http://localhost:${PORT}`);
+});

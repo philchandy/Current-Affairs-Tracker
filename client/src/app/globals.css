@@ -23,6 +23,15 @@ header {
   cursor: move; /* Change cursor to indicate dragging */
 }
 
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in; /* Fade-in transition */
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out; /* Fade-out transition */
+}
 
 @layer utilities {
   .text-balance {
@@ -39,7 +48,7 @@ header {
   .no-scrollbar {
       -ms-overflow-style: none;  /* IE and Edge */
       scrollbar-width: none;  /* Firefox */
-}
+  }
 }
 
 @layer base {

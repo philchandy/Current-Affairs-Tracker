@@ -79,9 +79,16 @@ async function rankEventsByMediaAttention(data) {
 
     if (fs.existsSync(rankedFilePath)) {
         const fileStats = fs.statSync(rankedFilePath);
-        if (fileStats.size > 0) {
-            console.log('eventsDataRanked.json is not empty. Skipping media score calculation.');
-            return JSON.parse(fs.readFileSync(rankedFilePath, 'utf8'));
+        if (fileStats.size === 0) {
+            console.log('eventsDataRanked.json is empty. Proceeding with media score calculation.');
+        } else {
+            const existingData = fs.readFileSync(rankedFilePath, 'utf8');
+            if (existingData === '[]') {
+                console.log('eventsDataRanked.json contains an empty array. Proceeding with media score calculation.');
+            } else {
+                console.log('eventsDataRanked.json is not empty. Skipping media score calculation.');
+                return JSON.parse(existingData);
+            }
         }
     }
 
@@ -171,7 +178,7 @@ function test() {
             eventsWithMediaAttention.forEach(region => {
                 console.log(`Region: ${region.Region}`);
                 region.Events.forEach(event => {
-                    console.log(JSON.stringify(event, null, 2)); // Output each event with country, description, severityScore, and mediaScore
+                    console.log(JSON.stringify(event, null, 2));
                 });
             });
         } catch (error) {
