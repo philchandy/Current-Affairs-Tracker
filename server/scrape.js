@@ -134,8 +134,8 @@ const countries = [
     "Netherlands",
     "New Zealand",
     "Nicaragua",
-    "Niger",
     "Nigeria",
+    "Niger",
     "North Macedonia",
     "Norway",
     "Oman",
@@ -169,7 +169,7 @@ const countries = [
     "Slovenia",
     "Solomon Islands",
     "Somalia",
-    "Somaliland", // De facto state
+    "Somaliland",
     "South Africa",
     "South Sudan",
     "Spain",
@@ -204,112 +204,114 @@ const countries = [
     "Yemen",
     "Zambia",
     "Zimbabwe",
-    "Western Sahara" // De facto state
+    "Western Sahara"
 ];
 
 
-function isAbbreviation(index, text){
-    for (const abbr of abbreviations) {
-        if (text.slice(index - abbr.length + 1, index + 1) === abbr){
-            return true;
-        }
-    }
-    return false;
+function isAbbreviation(index, text) {
+    return abbreviations.some(abbr => text.slice(index - abbr.length + 1, index + 1) === abbr);
 }
 
+//normalize text
 function normalizeText(text) {
     return text
-        .replace(/[\n\r]+/g, ' ') // Replace newlines with spaces
-        .replace(/\s\s+/g, ' ')   // Replace multiple spaces with a single space
-        .replace(/[^\x20-\x7E]/g, '') // Remove non-ASCII characters
+        .replace(/^\//, '') 
+        .replace(/[\n\r]+/g, ' ')  //newlines to spaces
+        .replace(/\s\s+/g, ' ')    //multiple spaces to single space
+        .replace(/[^\x20-\x7E]/g, '')  //remove non-ASCII characters
         .trim();
 }
 
-function extractCountryAndDescription(event) {
-    const words = event.split(' ');
-
-    for (let i = 1; i <= Math.min(words.length, 8); i++) {
-        const potentialCountry = words.slice(0, i).join(' ');
-        if (countries.includes(potentialCountry)) {
-            const description = words.slice(i).join(' ');
-            return {
-                country: potentialCountry,
-                description: normalizeText(description)
-            };
-        }
-    }
-    return null; // If no country is found, return null
-}
-
-// Function to parse a single PDF file
-async function parsePdf(filepath) {
-    const dataBuffer = fs.readFileSync(filepath);
-    const data = await pdf(dataBuffer);
-    
-    const unknownChars = ['Æ', ''];
-    let results = [];
+//get country and descriptions
+function extractCountryAndDetails(dataText) {
+    const unknownChars = ['Æ', ''];  // Special characters marking the country
+    const results = [];
     let startIndex = 0;
 
-    while(true){
+    while (true) {
+        // Find the index of the next unknown character 
         const unknownCharIndex = Math.min(
-            ...unknownChars
-                .map(char => data.text.indexOf(char, startIndex))
-                .filter(index => index !== -1)
+            ...unknownChars.map(char => dataText.indexOf(char, startIndex)).filter(index => index !== -1)
         );
 
         if (unknownCharIndex === Infinity) break;
 
         let periodIndex = unknownCharIndex;
-
         while (true) {
-            periodIndex = data.text.indexOf('. ', periodIndex + 1)
-
-            if (periodIndex === -1 || !isAbbreviation(periodIndex, data.text)){
+            periodIndex = dataText.indexOf('. ', periodIndex + 1);
+            if (periodIndex === -1 || !isAbbreviation(periodIndex, dataText)) {
                 break;
             }
         }
 
-        if(periodIndex !== -1){
-            const sentence = data.text.slice(unknownCharIndex, periodIndex + 1).trim();
-            results.push(normalizeText(sentence));
-            startIndex = periodIndex + 1;
+        if (periodIndex !== -1) {
+            const descriptionCountry = normalizeText(dataText.slice(unknownCharIndex, periodIndex + 1).trim());
+
+            let nextUnknownCharIndex = Math.min(
+                ...unknownChars.map(char => dataText.indexOf(char, periodIndex)).filter(index => index !== -1)
+            );
+
+            if (nextUnknownCharIndex === Infinity) nextUnknownCharIndex = dataText.length;
+            const detailedDescription = normalizeText(dataText.slice(periodIndex + 1, nextUnknownCharIndex).trim());
+
+            const countryRegex = new RegExp(`^(${countries.join('|')})`, 'i');
+            const match = descriptionCountry.match(countryRegex);
+
+            if (match) {
+                const country = match[0]; 
+                let description = descriptionCountry.replace(country, '').trim(); 
+
+                description = normalizeText(description);
+
+                results.push({
+                    country,
+                    description,
+                    detailedDescription
+                });
+            }
+            startIndex = nextUnknownCharIndex;
         } else {
             break;
         }
     }
-    return results;  // Return the raw extracted text
+
+    return results;
 }
 
-// Function to extract events from all PDFs in the 'eventsPDF' folder
+async function parsePdf(filepath) {
+    const dataBuffer = fs.readFileSync(filepath);
+    const data = await pdf(dataBuffer);
+
+    const events = extractCountryAndDetails(data.text);
+    return events;
+}
+
 async function extractEventsFromPdfs() {
     const finalData = [];
-    const files = fs.readdirSync(pdfDirectory);  // Get all PDF files in the folder
+    const files = fs.readdirSync(pdfDirectory);
 
     for (const file of files) {
         const filepath = path.join(pdfDirectory, file);
 
         try {
-            const eventsStrings = await parsePdf(filepath)
-            const region = path.basename(file, path.extname(file));
-
-            //Added FUnction Below
-
-            const eventsWithCountries = eventsStrings
-                .map(extractCountryAndDescription)
-                .filter(event => event !== null); // Remove nulls for events without countries
+            const eventsWithDetails = await parsePdf(filepath);
+            const region = path.basename(file, path.extname(file)); 
 
             finalData.push({
                 Region: region,
-                Events: eventsWithCountries
+                Events: eventsWithDetails
             });
         } catch (error) {
-            console.error(`Error processing ${file}:`, error); 
+            console.error(`Error processing ${file}:`, error);
         }
     }
 
-    // Data check
-    // fs.writeFileSync('eventsData.json', JSON.stringify(finalData, null, 2));
+    //data check
+    //fs.writeFileSync('eventsData.json', JSON.stringify(finalData, null, 2));
+
     return finalData;
 }
+
+// extractEventsFromPdfs()
 
 module.exports = extractEventsFromPdfs;

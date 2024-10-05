@@ -14,21 +14,23 @@ interface SidebarProps {
     setSelectedCountry: (country: string) => void;
     isOpen: boolean;
     toggleSidebar: () => void;
+    onEventClick: (country: string) => void;
+    isEventCardOpen: boolean;
     
 }
 
-const Sidebar: React.FC<SidebarProps> = ({events, selectedCountry, setSelectedCountry, isOpen, toggleSidebar}) => {
+const Sidebar: React.FC<SidebarProps> = ({events, selectedCountry, setSelectedCountry, isOpen, toggleSidebar, onEventClick, isEventCardOpen}) => {
 
     const sidebarRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+            if (!isEventCardOpen && sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
                 toggleSidebar()
             }
         };
 
-        if (isOpen) {
+        if (isOpen && !isEventCardOpen) {
             document.addEventListener('mousedown', handleClickOutside);
         } else {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -50,10 +52,10 @@ const Sidebar: React.FC<SidebarProps> = ({events, selectedCountry, setSelectedCo
 
     return (
         <>
-            {/* Hamburger Icon (when sidebar is closed) */}
-            {!isOpen && (
-                <div className="absolute top-4 left-4 z-[1000]">
-                    <button
+        {/* Hamburger Icon (when sidebar is closed) */}
+        {!isOpen && (
+            <div className="absolute top-4 left-4 z-[1000]">
+                <button
                     onClick={toggleSidebar}
                     className="flex flex-col justify-center items-center w-10 h-10 bg-gray-900/70 hover:bg-gray-500 rounded-md p-2"
                 >
@@ -61,29 +63,27 @@ const Sidebar: React.FC<SidebarProps> = ({events, selectedCountry, setSelectedCo
                     <span className="block w-6 h-[2px] bg-white mb-[4px]"></span>
                     <span className="block w-6 h-[2px] bg-white"></span>
                 </button>
+            </div>
+        )}
+
+        <div
+            className={`fixed top-0 left-0 h-full sm:w-full md:w-[400px] bg-gray-800 shadow-lg transition-transform duration-300 ${
+                isOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
+            style={{ zIndex: 1001 }}
+        >
+            <div ref={sidebarRef} className="flex flex-col h-full ">
+                {/* Sticky Header Section */}
+                <div className="flex justify-between items-center bg-gray-800 p-4 sticky top-0 z-10">
+                    <h2 className="text-xl font-bold text-white tracking-wider">Events</h2>
+                    <FaArrowLeft
+                        size={24}
+                        className="cursor-pointer text-white hover:text-gray-500"
+                        onClick={toggleSidebar}
+                    />
                 </div>
-            )}
 
-            <div
-                className={`fixed top-0 left-0 h-full bg-gray-900 shadow-lg transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
-                style={{ width: '400px', maxHeight: '100%', overflowY: 'scroll', zIndex: 1001 }}
-            >
-                <div ref={sidebarRef} className="p-4" style={{ overflowY: 'scroll', scrollbarWidth: 'none' }}>
-                    <style>{`
-                        ::-webkit-scrollbar {
-                            display: none;
-                        }
-                    `}</style>
-
-                    <div className="flex justify-end mb-4">
-                        <FaArrowLeft
-                            size={24}
-                            className="cursor-pointer text-white"
-                            onClick={toggleSidebar}
-                        />
-                    </div>
-
-                    <h2 className="text-xl font-bold text-white">Event List</h2>
+                <div className="overflow-y-scroll no-scrollbar border-t-2 border-gray-600 px-2 pb-2 mb-2">
                     <ul>
                         {events.map((event, index) => (
                             <li
@@ -91,20 +91,21 @@ const Sidebar: React.FC<SidebarProps> = ({events, selectedCountry, setSelectedCo
                                 data-country={event.country.toLowerCase()}
                                 onClick={() => {
                                     setSelectedCountry(event.country.toLowerCase());
+                                    onEventClick(event.country);
                                 }}
-                                className={`p-2 cursor-pointer text-white ${selectedCountry === event.country.toLowerCase() ? 'bg-gray-200/10' : ''}`}
+                                className={`p-2 cursor-pointer text-white border-b border-gray-600 ${
+                                    selectedCountry === event.country.toLowerCase() ? 'bg-gray-200/10' : ''
+                                }`}
                             >
-                                <h3>{event.country}</h3>
+                                <h3 className='font-semibold'>{event.country}</h3>
                                 <p>{event.description}</p>
-                                <p>Severity Score: {event.severityScore}</p>
-                                <p>Media Score: {event.mediaScore}</p>
-                                
                             </li>
                         ))}
                     </ul>
                 </div>
             </div>
-        </>
+        </div>
+    </>
     );
 };
 

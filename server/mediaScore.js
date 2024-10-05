@@ -1,8 +1,10 @@
 const axios = require('axios');
 require('dotenv').config();
+const fs = require('fs');
+const path = require('path');
 
-const API_KEY = process.env.API_KEY;
-const CX = process.env.SEARCH_ENGINE_ID;
+const API_KEY = "";
+const CX = "";
 
 async function getMediaAttentionScore(event){
     const searchQuery = `${event.country} ${event.description}`;
@@ -15,6 +17,8 @@ async function getMediaAttentionScore(event){
     while (attempts < maxAttempts) {
         try {
             const response = await axios.get(searchURL);
+            console.log(`Search Query: ${searchQuery}`); // Log the constructed search query
+            console.log(`Search URL: ${searchURL}`);
             const totalResults = response.data.searchInformation.totalResults;
     
             //logarithmic scaling
@@ -47,26 +51,69 @@ function logSearchQuery(country, mediaScore) {
     console.log(`${new Date().toISOString()} - Country: ${country}, Media Score: ${mediaScore}`);
 }
 
+//calculate Pearson correlation coefficient
+const calculateCorrelation = (scoresA, scoresB) => {
+    if (scoresA.length !== scoresB.length || scoresA.length === 0) return null;
+
+    const n = scoresA.length;
+    const meanA = scoresA.reduce((sum, score) => sum + score, 0) / n;
+    const meanB = scoresB.reduce((sum, score) => sum + score, 0) / n;
+
+    const covariance = scoresA.reduce((sum, scoreA, i) => sum + (scoreA - meanA) * (scoresB[i] - meanB), 0);
+    const stdA = Math.sqrt(scoresA.reduce((sum, scoreA) => sum + Math.pow(scoreA - meanA, 2), 0));
+    const stdB = Math.sqrt(scoresB.reduce((sum, scoreB) => sum + Math.pow(scoreB - meanB, 2), 0));
+
+    if (stdA === 0 || stdB === 0) return null; // Avoid division by zero
+
+    return covariance / (stdA * stdB);
+};
+
+function calculateNormalizedDifference(severityScore, mediaScore) {
+    if (mediaScore === 0) return 0; // Avoid division by zero
+    return ((severityScore - mediaScore) / Math.max(severityScore, mediaScore));
+}
+
 async function rankEventsByMediaAttention(data) {
     const rankedData = [];
+    const rankedFilePath = path.join(__dirname, 'eventsDataRanked.json');
+
+    if (fs.existsSync(rankedFilePath)) {
+        const fileStats = fs.statSync(rankedFilePath);
+        if (fileStats.size > 0) {
+            console.log('eventsDataRanked.json is not empty. Skipping media score calculation.');
+            return JSON.parse(fs.readFileSync(rankedFilePath, 'utf8'));
+        }
+    }
 
     for (const region of data){
         rankedEvents = [];
+        const severityScores = [];
+        const mediaScores = [];
         for (const event of region.Events) {
             await delay(2000);
 
             const mediaAttentionScore = await getMediaAttentionScore(event);
+            severityScores.push(event.severityScore);
+            mediaScores.push(mediaAttentionScore);
+
+            const normalizedDifference = calculateNormalizedDifference(event.severityScore, mediaAttentionScore);
+
             rankedEvents.push({
                 country: event.country,
                 description: event.description,
+                detailedDescription: event.detailedDescription,
                 severityScore: event.severityScore,
-                mediaScore: mediaAttentionScore
+                mediaScore: mediaAttentionScore,
+                normalizedDifference: normalizedDifference,
             });
         }
 
+        const correlation = calculateCorrelation(severityScores, mediaScores);
+
         rankedData.push({
             Region: region.Region,
-            Events: rankedEvents
+            Events: rankedEvents,
+            Correlation: correlation
         })
     }
 
