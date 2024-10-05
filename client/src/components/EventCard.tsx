@@ -6,9 +6,9 @@ interface EventCardProps {
     country: string;
     description: string;
     detailedDescription: string;
-    mediaScore: any;
-    severityScore: any;
-    normalizedDifference: any;
+    mediaScore: number;
+    severityScore: number;
+    normalizedDifference: number;
     onClose: () => void;
 }
 

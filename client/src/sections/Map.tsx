@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 import L, { Layer } from 'leaflet';
@@ -9,18 +9,17 @@ import LoadingScreen from '@/components/LoadingScreen';
 import Drawer from '@/components/Drawer'; 
 import EventCard from '@/components/EventCard';
 import dynamic from 'next/dynamic';
-import { FaArrowUp, FaInfoCircle } from 'react-icons/fa';
+import { FaArrowUp } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
-import Draggable from 'react-draggable';
 
 // Define types for event and API response
 interface Event {
     country: string;
     description: string;
     detailedDescription: string;
-    severityScore: any;
-    mediaScore: any;
-    normalizedDifference: any;
+    severityScore: number;
+    mediaScore: number;
+    normalizedDifference: number;
 }
 
 interface ApiResponse {
@@ -29,7 +28,15 @@ interface ApiResponse {
 
 interface Region {
     Events: Event[];
-    Correlation: any;
+    Correlation: number;
+}
+
+interface FeatureProperties {
+    ADMIN: string; // or whatever the actual type is
+}
+
+interface Feature {
+    properties: FeatureProperties;
 }
 
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
@@ -144,7 +151,18 @@ export const MapSection = () => {
     };
 
 
-    const countryStyle = (feature: any): L.PathOptions => {
+    const countryStyle = (feature: Feature | undefined): L.PathOptions => {
+        if (!feature) {
+            // Return a default style if feature is undefined
+            return {
+                fillColor: 'transparent',
+                weight: 1,
+                opacity: 1,
+                color: '#4b5563',
+                dashArray: '3',
+                fillOpacity: 0,
+            };
+        }
         const countryName = feature.properties?.ADMIN?.toLowerCase();
         let score = 0;
         let color = '';
@@ -188,7 +206,7 @@ export const MapSection = () => {
         };
     };
 
-    const clickCountry = (feature: any, layer: Layer) => {
+    const clickCountry = (feature: Feature, layer: Layer) => {
         const countryName = feature.properties?.ADMIN;
         layer.on({
             click:()=>{
@@ -223,22 +241,9 @@ export const MapSection = () => {
         setIsEventCardOpen(false);
     };
 
-    const handleMapClick = () => {
-        if (isEventCardOpen) {
-          closeEventCard();
-        }
-    };
-
     if (loading) {
         return <LoadingScreen />;
     }
-
-    const mapBounds = [[-90, -180],[90, 180]];
-    const boundsOptions = {
-        padding: [50, 50], // Padding around the bounds
-        bounceAtZoomLimits: true, // Bounce back when trying to zoom out of bounds
-        maxBoundsViscosity: 1.0,
-    };
 
     return (
         <div className="App relative">

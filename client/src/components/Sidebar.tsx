@@ -4,8 +4,8 @@ import { FaArrowLeft } from 'react-icons/fa';
 interface Event {
     country: string,
     description: string,
-    severityScore: any,
-    mediaScore: any
+    severityScore: number,
+    mediaScore: number
 }
 
 interface SidebarProps {
@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({events, selectedCountry, setSelectedCo
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         }
-    },[isOpen, toggleSidebar])
+    },[isOpen, toggleSidebar, isEventCardOpen])
 
     useEffect(()=>{
         if (selectedCountry && sidebarRef.current) {

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { FaGithub, FaLink, FaArrowDown } from 'react-icons/fa'
+import { FaArrowDown } from 'react-icons/fa'
 import Footer from './Footer';
 import axios from 'axios';
 import Image from 'next/image';
@@ -28,7 +28,7 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
             setTimeout(() => {
                 setFade(false)
                 setTimeout(() => setErrorMessage(null), 500);
-            }, 3000);
+            }, 2000);
         }
     };
 
@@ -76,8 +76,8 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
                             The Severity Score is calculated based on the presence of certain keywords in the event descriptions. The following process is used to determine the score:
                         </p>
                         <ul className="list-disc list-inside text-sm md:text-base text-gray-300 mt-3">
-                            <li>Keywords related to severity (e.g., "violence", "conflict") are assigned points.</li>
-                            <li>Keywords related to impact (e.g., "humanitarian crisis", "displacement") also contribute points.</li>
+                            <li>Keywords related to severity (e.g., &quot;violence&quot;, &quot;conflict&quot;) are assigned points.</li>
+                            <li>Keywords related to impact (e.g., &quot;humanitarian crisis&quot;, &quot;displacement&quot;) also contribute points.</li>
                             <li>The total score is scaled up and capped at 100 to reflect the severity of the event accurately.</li>
                         </ul>
 
@@ -177,7 +177,7 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
                         {/* Error Message Popup */}
                         {errorMessage && (
                             <div
-                            className={`fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-600/80 text-white font-semibold tracking-wider p-4 rounded-lg shadow-lg ${fade ? 'fade-in' : 'fade-out'}`}
+                            className={`fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-600/60 text-white font-semibold tracking-wider p-4 rounded-lg shadow-lg ${fade ? 'fade-in' : 'fade-out'}`}
                             >
                                 {errorMessage}
                             </div>
