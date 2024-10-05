@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { FaGithub, FaLink, FaArrowDown } from 'react-icons/fa'
 import Footer from './Footer';
 import axios from 'axios';
+import Image from 'next/image';
+import Logo from '@/assets/logo.png'
 
 interface DrawerProps {
     isOpen: boolean;
@@ -36,7 +38,11 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
                 <div className="h-full relative flex-1 overflow-y-auto no-scrollbar">
                     <div className='flex flex-row justify-between items-center sticky top-0 bg-gray-800 p-4 border-b-2 border-gray-600'>
                         {/* Header */}
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">Current Affairs Tracker</h2>
+                        <div className='flex flex-row justify-center items-center'>
+                            <Image src={Logo} alt="Logo" width={40} height={40} className="mr-2"/>
+                            <h2 className="text-2xl md:text-3xl font-bold text-white">Current Affairs Tracker</h2>
+                        </div>
+                        
                          {/* Close Button */}
                          <button onClick={onClose} className=" text-gray-400 hover:text-gray-200 flex items-center gap-2 ">
                             
@@ -60,7 +66,7 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
                         {/* Data Sources */}
                         <h3 className="text-lg md:text-2xl font-semibold text-white mt-6">Data Sources</h3>
                         <ul className="list-disc list-inside text-sm md:text-base text-gray-300 mt-3">
-                            <li>All events are sourced from <i>Crisis Watch</i>, a platform that tracks global crisis events.</li>
+                            <li>All events are sourced from <a href="https://www.crisisgroup.org"><u><i>Crisis Watch</i></u></a>, a platform that tracks global crisis events.</li>
                             <li><i>The Google Search API</i> is utilized to gather media attention data for the events, allowing for a comprehensive analysis of public interest.</li>
                         </ul>
 

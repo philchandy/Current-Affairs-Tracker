@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 import L, { Layer } from 'leaflet';
@@ -48,9 +48,6 @@ export const MapSection = () => {
     const [isEventCardOpen, setIsEventCardOpen ] = useState<boolean>(false);
     const [regionCorrelation, setRegionCorrelation] = useState<{ [key: string]: number | null }>({});
     const [showCorrelations, setShowCorrelations] = useState(false);
-    
-
-    
     
 
     useEffect(() => {
@@ -236,6 +233,13 @@ export const MapSection = () => {
         return <LoadingScreen />;
     }
 
+    const mapBounds = [[-90, -180],[90, 180]];
+    const boundsOptions = {
+        padding: [50, 50], // Padding around the bounds
+        bounceAtZoomLimits: true, // Bounce back when trying to zoom out of bounds
+        maxBoundsViscosity: 1.0,
+    };
+
     return (
         <div className="App relative">
 
@@ -243,33 +247,33 @@ export const MapSection = () => {
             <div className="absolute top-4 right-4 bg-gray-900/70 rounded-xl shadow-lg p-2 z-[1000]">
                 <fieldset className="flex space-x-4 sm:flex-col md:flex-row">
                     <legend className="sr-only">Select Score Type</legend>
-                    <label className="text-white">
+                    <label className="text-white flex items-center gap-1">
                         <input
                             type="radio"
                             value="severity"
                             checked={scoreType === 'severity'}
                             onChange={() => setScoreType('severity')}
-                            className="mr-2"
+                            className="appearance-none h-3 w-3 border-2 border-gray-400 rounded-full checked:bg-gray-300 checked:border-gray-900 focus:outline-none cursor-pointe"
                         />
                         Severity Score
                     </label>
-                    <label className="text-white">
+                    <label className="text-white flex items-center gap-1">
                         <input
                             type="radio"
                             value="media"
                             checked={scoreType === 'media'}
                             onChange={() => setScoreType('media')}
-                            className="mr-2"
+                            className="appearance-none h-3 w-3 border-2 border-gray-400 rounded-full checked:bg-gray-300 checked:border-gray-900 focus:outline-none cursor-pointe"
                         />
                         Media Score
                     </label>
-                    <label className="text-white">
+                    <label className="text-white flex items-center gap-1">
                         <input
                             type="radio"
                             value="normalizedDifference"
                             checked={scoreType === 'normalizedDifference'}
                             onChange={() => setScoreType('normalizedDifference')}
-                            className="mr-2"
+                            className="appearance-none h-3 w-3 border-2 border-gray-400 rounded-full checked:bg-gray-300 checked:border-gray-900 focus:outline-none cursor-pointe"
                         />
                         Normalized Difference
                     </label>
@@ -293,10 +297,13 @@ export const MapSection = () => {
                 <div className='' style={{ height: '100vh', width: '100%' }}>
                     <MapContainer 
                     center={[20, 0]} 
-                    zoom={2} 
+                    zoom={3} 
                     className='' 
                     style={{ height: '100%', width: '100%' }}
                     zoomControl={false}
+                    bounds={[[-90, -180],[90, 180]]}
+                    maxBounds={[[-90, -180],[90, 180]]}  // Restrict panning beyond these bounds
+                      // Sticky edge when trying to drag out
                     >
                     <TileLayer
                         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" // Using CartoDB Positron
@@ -315,7 +322,7 @@ export const MapSection = () => {
             </div>
 
             {/* Region Correlations */}
-            <div className="fixed lg:bottom-4 lg:right-4 sm:right-4 z-[1000]">
+            <div className="absolute bottom-auto top-28 right-4 md:top-auto md:bottom-4 z-[1000]">
                 {!showCorrelations && (
                     <button
                         onClick={() => setShowCorrelations(true)} // Show correlations when clicked
@@ -324,10 +331,10 @@ export const MapSection = () => {
                         Show Correlations
                     </button>
                 )}
-
                 {showCorrelations && (
+                    
                     <div className=" bg-gray-900/70 p-4 rounded-lg shadow-lg mt-2 max-w-xs">
-                        <div className="flex justify-between items-center mb-2">
+                        <div className="draggable-header cursor-grab flex justify-between items-center mb-2">
                             <h3 className="text-white text-lg font-bold">Correlation by Region</h3>
                             <button onClick={() => setShowCorrelations(false)} className="text-white hover:text-red-500">
                                 <FaTimes size={20} />
@@ -340,10 +347,11 @@ export const MapSection = () => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> 
+                    
                 )}
             </div>
-
+            
             {/* Event Card */}
             {selectedEvent && isEventCardOpen && (
                 <EventCard 
