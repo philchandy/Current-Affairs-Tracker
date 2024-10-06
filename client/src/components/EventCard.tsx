@@ -36,7 +36,7 @@ const EventCard: React.FC<EventCardProps> = ({ country, description, detailedDes
     
     const eventCardContent = (
         <div className={`fixed lg:top-20 lg:right-4 sm:top-0 sm:right-0 sm:h-full sm:w-full lg:h-[750px] lg:rounded-xl md:w-1/3 lg:w-1/4 bg-gray-800 text-white shadow-lg p-6 z-[1001]`}>
-            <div className="header flex justify-between items-center mb-4 sticky top-0 bg-gray-800 z-10">
+            <div className="header cursor-grab flex justify-between items-center mb-4 sticky top-0 bg-gray-800 z-10">
                 <h2 className="text-2xl font-bold">{country}</h2>
                 <button onClick={onClose} className="text-white hover:text-red-500">
                     <FaTimes size={24} />

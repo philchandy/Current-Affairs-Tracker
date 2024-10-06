@@ -339,7 +339,7 @@ export const MapSection = () => {
                 {showCorrelations && (
                     
                     <div className=" bg-gray-900/70 p-4 rounded-lg shadow-lg mt-2 max-w-xs">
-                        <div className="draggable-header cursor-grab flex justify-between items-center mb-2">
+                        <div className="draggable-header flex justify-between items-center mb-2">
                             <h3 className="text-white text-lg font-bold">Correlation by Region</h3>
                             <button onClick={() => setShowCorrelations(false)} className="text-white hover:text-red-500">
                                 <FaTimes size={20} />
