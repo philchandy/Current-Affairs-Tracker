@@ -17,7 +17,7 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
 
     const handleRefreshData = async () => {
         try {
-            const response = await axios.post('http://18.220.208.141/api/refresh');
+            const response = await axios.post('https://currentaffairstracker.cc/api/refresh');
             console.log(response.data.message); // Optional: log success message
             setErrorMessage(null); // Clear any existing error message
         } catch (error) {

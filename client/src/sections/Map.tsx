@@ -60,7 +60,7 @@ export const MapSection = () => {
     useEffect(() => {
         const fetchData = async () => {
             try{
-                const response: ApiResponse = await axios.get('http://18.220.208.141/api/scrape');
+                const response: ApiResponse = await axios.get('https://currentaffairstracker.cc/api/scrape');
                 const flattenedEvents = response.data.flatMap((region) => {
 
                     const regionWithName = region as Region & { Region: string }; //dumb typescript, make sure region has region
