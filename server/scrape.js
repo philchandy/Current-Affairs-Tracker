@@ -224,7 +224,7 @@ function normalizeText(text) {
 
 //get country and descriptions
 function extractCountryAndDetails(dataText) {
-    const unknownChars = ['Æ', ''];  // Special characters marking the country
+    const unknownChars = ['Æ', '', 'È'];  // Special characters marking the country
     const results = [];
     let startIndex = 0;
 

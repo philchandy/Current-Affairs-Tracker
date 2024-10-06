@@ -165,6 +165,10 @@ const Drawer: React.FC<DrawerProps> = ({isOpen, onClose}) => {
                         <p className="text-sm md:text-base text-gray-300 mt-3">
                             Events with <i>high media attention</i> will have a deep blue color, showcasing that the event is heavily covered by global media.
                         </p>
+                        <h4 className="text-base md:text-lg font-semibold text-white mt-6">Special Thanks</h4>
+                        <p className="text-xs md:text-sm text-gray-300 mt-2">
+                            A special thanks to <a href="https://www.conncoll.edu/directories/faculty-profiles/william-tarimo/"><u>Professor William Tarimo</u></a> who assisted in the development of this project. His support and feedback has been invaluable.
+                        </p>
                         {/* Refresh Data Button */}
                         <div className="mt-4">
                             <button
