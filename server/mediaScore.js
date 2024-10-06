@@ -3,8 +3,8 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 
-const API_KEY = "AIzaSyAztMdoGCPEW_trmYzxdZSZXoA2g1ClS9Q";
-const CX = "f787a9ea790c34c0a";
+const API_KEY = "";
+const CX = "";
 
 async function getMediaAttentionScore(event){
     const searchQuery = `${event.country} ${event.description}`;
